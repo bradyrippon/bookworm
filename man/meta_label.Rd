@@ -4,14 +4,24 @@
 \alias{meta_label}
 \title{Attach labels from YAML metadata to a data frame.}
 \usage{
-meta_label(data, yaml_path, warn_missing = FALSE)
+meta_label(
+  data,
+  yaml_path,
+  warn_missing = FALSE,
+  values = c("none", "overwrite", "new"),
+  values_tag = "_factor"
+)
 }
 \arguments{
 \item{data}{A data frame you want to label.}
 
 \item{yaml_path}{Path to YAML file containing variable labels.}
 
-\item{warn_missing}{Logical, controls warnings for metadata variables not found in data frame.}
+\item{warn_missing}{Logical; controls warnings for metadata variables not found in data frame.}
+
+\item{values}{Character (none, overwrite, new); controls how to handle factor values.}
+
+\item{values_tag}{Character, string for variable suffix when values = "new."}
 }
 \value{
 Original data frame with labels attached
@@ -27,10 +37,10 @@ yaml_path <- system.file("extdata", "codebook.yaml", package = "wcmtools")
 df <- data.frame(
   age = c(23, 25, 42, 38, 29),
   gender = c(1, 2, 1, 1, 2),
-  education = c(2, 3, 3, 5, 4)
+  education = c(2, 3, 3, 5, 4),
+  diabetes = c("N", "N", "2", "1", "N")
 )
 
-labeled_df <- meta_label(df, yaml_path)
-labelled::var_label(labeled_df$age)
+labels <- df |> meta_label(yaml_path, values = "overwrite")
 }
 }
