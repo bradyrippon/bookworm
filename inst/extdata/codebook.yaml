@@ -33,6 +33,6 @@ values:
     4: "Bachelor’s degree"
     5: "Graduate degree"
   diabetes:
-    N: "NGT"
-    1: "Type I diabetes"
-    2: "Type 2 diabetes"
+    Ngt: "NGT"
+    1:   "Type I diabetes"
+    2:   "Type 2 diabetes"

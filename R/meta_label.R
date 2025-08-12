@@ -24,7 +24,7 @@
 #'   age = c(23, 25, 42, 38, 29),
 #'   gender = c(1, 2, 1, 1, 2),
 #'   education = c(2, 3, 3, 5, 4),
-#'   diabetes = c("N", "N", "2", "1", "N")
+#'   diabetes = c("Ngt", "Ngt", "2", "1", "Ngt")
 #' )
 #'
 #' labels <- df |> meta_label(yaml_path, values = "overwrite")
