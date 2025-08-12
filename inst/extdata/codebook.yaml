@@ -1,0 +1,33 @@
+
+# # ---------- Codebook ----------
+# ---
+# ---
+# ---
+# --- Author: Brady Rippon
+# --- Institution: WCM
+# ---
+# --- Created: 2025-08-12
+# --- Contact: brr7014@med.cornell.edu
+
+
+
+# # ---------- Data ----------
+
+# variable labels
+labels:
+  age: "Age (y)"
+  gender: "Sex"
+  education: "Highest level of education"
+
+# value labels (for categorical variables)
+values:
+  gender:
+    1: "Male"
+    2: "Female"
+    3: "Other"
+  education:
+    1: "Less than high school"
+    2: "High school graduate"
+    3: "Some college"
+    4: "Bachelor’s degree"
+    5: "Graduate degree"
