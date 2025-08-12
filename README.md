@@ -4,7 +4,7 @@
 
 ## Current Features
 
-- Metadata management for data labelling
+- Metadata management for data labelling/factoring
 - Nothing else! (for now...)
 
 ## Installation
