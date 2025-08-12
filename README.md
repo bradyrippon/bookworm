@@ -8,4 +8,4 @@
 - Nothing else! (for now...)
 
 ## Installation
-Please install `wcmtools` via GtiHub using `devtools::install_github("bradyrippon/wcmtools")`
+Please install `wcmtools` via **GtiHub** using `devtools::install_github("bradyrippon/wcmtools")`
