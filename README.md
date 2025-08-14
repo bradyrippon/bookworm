@@ -8,4 +8,4 @@
 - Nothing else! (for now...)
 
 ## Installation
-Please install `boookworm` via **GtiHub** using `devtools::install_github("bradyrippon/bookworm")`
+Please install `bookworm` via **GtiHub** using `devtools::install_github("bradyrippon/bookworm")`
