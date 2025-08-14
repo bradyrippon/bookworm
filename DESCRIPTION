@@ -1,15 +1,24 @@
 Package: bookworm
-Title: Bookworm
+Title: Create and Manage Dataset Codebooks
 Version: 0.1.0
 Authors@R: person(given = "Brady", family = "Rippon", email = "brr7014@med.cornell.edu", role = c("aut", "cre"))
-Description: Bookworm provides a framework for creating and managing codebooks using YAML files. It supplies helpers to define data parameters and read/write codebooks. 
+Description: Bookworm provides a framework for creating and applying dataset metadata using readable YAML codebooks. 
+    It supplies variable labels and value mapping and further extends to factor ordering, validation rules, units, and privacy management. 
 License: MIT + file LICENSE
-Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+URL: https://github.com/bradyrippon/bookworm
+BugReports: https://github.com/bradyrippon/bookworm/issues
+Depends: 
+    R (>= 4.1)
 Imports:
     yaml,
     labelled
 Suggests: 
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    rmarkdown,
+    knitr,
+    gt,
+    gtsummary
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
 Config/testthat/edition: 3
