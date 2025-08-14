@@ -1,11 +1,11 @@
-# wcmtools
+# bookworm
 
-`wcmtools` is a collection of functions and tools designed to improve the quality of life for researchers within WCM's Division of Biostatistics and Epidemiology.
+`bookworm` is a collection of functions and tools designed to improve the workflow of working with data labels and dtaa documentation. 
 
 ## Current Features
 
-- Metadata management for data labelling/factoring
+- Metadata management for data labeling/factoring
 - Nothing else! (for now...)
 
 ## Installation
-Please install `wcmtools` via **GtiHub** using `devtools::install_github("bradyrippon/wcmtools")`
+Please install `boookworm` via **GtiHub** using `devtools::install_github("bradyrippon/bookworm")`

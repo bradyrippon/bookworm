@@ -18,7 +18,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' yaml_path <- system.file("extdata", "codebook.yaml", package = "wcmtools")
+#' yaml_path <- system.file("extdata", "codebook.yaml", package = "bookworm")
 #'
 #' df <- data.frame(
 #'   age = c(23, 25, 42, 38, 29),

@@ -1,8 +1,8 @@
-Package: wcmtools
-Title: WCM Tools
+Package: bookworm
+Title: Bookworm
 Version: 0.1.0
-Authors@R: person(given = "Brady", family = "Rippon", email = "brr7014@med.cornell.com", role = c("aut", "cre"))
-Description: Creates tools commonly used by WCM Biostatistics staff.
+Authors@R: person(given = "Brady", family = "Rippon", email = "brr7014@med.cornell.edu", role = c("aut", "cre"))
+Description: Bookworm provides a framework for creating and managing codebooks using YAML files. It supplies helpers to define data parameters and read/write codebooks. 
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

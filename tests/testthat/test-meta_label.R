@@ -14,7 +14,7 @@
 
 # libraries
 library(testthat)
-library(wcmtools)
+library(bookworm)
 library(labelled)
 
 
@@ -23,7 +23,7 @@ library(labelled)
 # ---------- Functionality ----------
 test_that("meta_label applies labels correctly", {
 
-  yaml_path <- system.file("extdata", "codebook.yaml", package = "wcmtools")
+  yaml_path <- system.file("extdata", "codebook.yaml", package = "bookworm")
   df <- data.frame(
     age = c(23, 25, 42, 38, 29),
     gender = c(1, 2, 1, 1, 2),
@@ -43,7 +43,7 @@ test_that("meta_label applies labels correctly", {
 
 
 test_that("meta_label leaves variables unchanged when values = none", {
-  yaml_path <- system.file("extdata", "codebook.yaml", package = "wcmtools")
+  yaml_path <- system.file("extdata", "codebook.yaml", package = "bookworm")
   df <- data.frame(gender = c(2, 1)) |>
     meta_label(yaml_path, values = "none")
 
@@ -54,7 +54,7 @@ test_that("meta_label leaves variables unchanged when values = none", {
 
 test_that("meta_label applies value labels with overwrite", {
 
-  yaml_path <- system.file("extdata", "codebook.yaml", package = "wcmtools")
+  yaml_path <- system.file("extdata", "codebook.yaml", package = "bookworm")
   df <- data.frame(gender = c(2, 1)) |>
     meta_label(yaml_path, values = "overwrite")
 
@@ -67,7 +67,7 @@ test_that("meta_label applies value labels with overwrite", {
 
 test_that("meta_label applies value labels with new factor and custom suffix", {
 
-  yaml_path <- system.file("extdata", "codebook.yaml", package = "wcmtools")
+  yaml_path <- system.file("extdata", "codebook.yaml", package = "bookworm")
   df <- data.frame(gender = c(2, 1)) |>
     meta_label(yaml_path, values = "new", values_tag = "_cats")
 
@@ -107,7 +107,7 @@ test_that("meta_label errors for invalid inputs", {
 # ---------- Warnings ----------
 test_that("meta_label warns missing vars when warn_missing=TRUE", {
   df <- data.frame(age = c(1,2))
-  yaml_path <- system.file("extdata", "codebook.yaml", package = "wcmtools")
+  yaml_path <- system.file("extdata", "codebook.yaml", package = "bookworm")
 
   expect_warning(
     df |> meta_label(yaml_path, warn_missing = TRUE),

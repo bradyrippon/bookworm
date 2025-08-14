@@ -9,8 +9,8 @@
 
 # libraries
 library(testthat)
-library(wcmtools)
+library(bookworm)
 
 # --- - - - - - - - - - -
 
-test_check("wcmtools")
+test_check("bookworm")
