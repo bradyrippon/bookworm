@@ -1,5 +1,5 @@
 
-# # ---------- Tests for meta_label() ----------
+# # ---------- Tests for annotate() ----------
 #
 # --- Created: 2025-08-12
 #
@@ -21,7 +21,7 @@ library(labelled)
 # --- - - - - - - - - - -
 
 # ---------- Functionality ----------
-test_that("meta_label applies labels correctly", {
+test_that("annotate applies labels correctly", {
 
   yaml_path <- system.file("extdata", "codebook.yaml", package = "bookworm")
   df <- data.frame(
@@ -31,7 +31,7 @@ test_that("meta_label applies labels correctly", {
     diabetes = c("N", "N", "2", "1", "N"),
     dx = c(1, 0, 0, 0, 1)
   ) |>
-    meta_label(yaml_path)
+    annotate(yaml_path)
 
   # labels applied correctly
   expect_equal(var_label(df$age), "Age (y)")
@@ -42,21 +42,21 @@ test_that("meta_label applies labels correctly", {
 })
 
 
-test_that("meta_label leaves variables unchanged when values = none", {
+test_that("annotate leaves variables unchanged when values = none", {
   yaml_path <- system.file("extdata", "codebook.yaml", package = "bookworm")
   df <- data.frame(gender = c(2, 1)) |>
-    meta_label(yaml_path, values = "none")
+    annotate(yaml_path, values = "none")
 
   expect_false(is.factor(df$gender))
   expect_equal(var_label(df$gender), "Sex")
 })
 
 
-test_that("meta_label applies value labels with overwrite", {
+test_that("annotate applies value labels with overwrite", {
 
   yaml_path <- system.file("extdata", "codebook.yaml", package = "bookworm")
   df <- data.frame(gender = c(2, 1)) |>
-    meta_label(yaml_path, values = "overwrite")
+    annotate(yaml_path, values = "overwrite")
 
   expect_s3_class(df$gender, "factor")
   expect_equal(levels(df$gender), c("Male", "Female", "Other"))
@@ -65,11 +65,11 @@ test_that("meta_label applies value labels with overwrite", {
 })
 
 
-test_that("meta_label applies value labels with new factor and custom suffix", {
+test_that("annotate applies value labels with new factor and custom suffix", {
 
   yaml_path <- system.file("extdata", "codebook.yaml", package = "bookworm")
   df <- data.frame(gender = c(2, 1)) |>
-    meta_label(yaml_path, values = "new", values_tag = "_cats")
+    annotate(yaml_path, values = "new", values_tag = "_cats")
 
   expect_false("gender" %in% names(df) && is.factor(df$gender))
   expect_true("gender_cats" %in% names(df))
@@ -82,35 +82,35 @@ test_that("meta_label applies value labels with new factor and custom suffix", {
 
 
 # ---------- Errors ----------
-test_that("meta_label errors for invalid inputs", {
+test_that("annotate errors for invalid inputs", {
 
   df <- data.frame(x = 1)
 
   # invalid data entry
   expect_error(
-    "no data" |> meta_label("somepath.yaml")
+    "no data" |> annotate("somepath.yaml")
   )
 
   # invalid YAML entry
   expect_error(
-    df |> meta_label("no_file.yaml")
+    df |> annotate("no_file.yaml")
   )
 
   # YAML file without 'labels' element
   tmp_yaml <- tempfile(fileext = ".yaml")
   writeLines("foo: bar", tmp_yaml)
-  expect_error(df |> meta_label(tmp_yaml))
+  expect_error(df |> annotate(tmp_yaml))
 })
 
 
 
 # ---------- Warnings ----------
-test_that("meta_label warns missing vars when warn_missing=TRUE", {
+test_that("annotate warns missing vars when warn_missing=TRUE", {
   df <- data.frame(age = c(1,2))
   yaml_path <- system.file("extdata", "codebook.yaml", package = "bookworm")
 
   expect_warning(
-    df |> meta_label(yaml_path, warn_missing = TRUE),
+    df |> annotate(yaml_path, warn_missing = TRUE),
     "Some metadata variables had no match"
   )
 })

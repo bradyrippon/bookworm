@@ -27,10 +27,10 @@
 #'   diabetes = c("Ngt", "Ngt", "2", "1", "Ngt")
 #' )
 #'
-#' labels <- df |> meta_label(yaml_path, values = "overwrite")
+#' labels <- df |> annotate(yaml_path, values = "overwrite")
 #' }
 
-meta_label <- function(
+annotate <- function(
     data,
     yaml_path,
     warn_missing = FALSE,

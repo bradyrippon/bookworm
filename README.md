@@ -1,6 +1,6 @@
 # bookworm
 
-`bookworm` is a collection of functions and tools designed to improve the workflow of working with data labels and dtaa documentation. 
+`bookworm` is a collection of functions and tools designed to improve the workflow of working with data labels and documentation. 
 
 ## Current Features
 
