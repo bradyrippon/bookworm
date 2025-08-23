@@ -15,9 +15,16 @@
 
 # variable labels
 labels:
+  id: "Participant ID"
+  mrn: "MRN"
+  consent: "Informed consent obtained"
+  phone: "Phone number"
   age: "Age (y)"
   gender: "Sex"
   education: "Highest level of education"
+  state: "State of residence"
+  visit: "Visit date"
+  hba1c: "Hemoglobin A1c"
   diabetes: "Diabetes status"
 
 # value labels (for categorical variables)
@@ -36,3 +43,56 @@ values:
     Ngt: "NGT"
     1:   "Type I diabetes"
     2:   "Type 2 diabetes"
+  consent:
+    Y: "Yes"
+    N: "No"
+
+# additional metadata
+meta:
+  id:
+    type: integer
+    role: id
+    required: true
+    sensitivity: high
+  age:
+    type: double
+    units: "years"
+    scale: ratio
+    allowed_range: { min: 0, max: 120 }
+    missing_codes: [ -9, 999, "NA" ]
+    table: { digits: 0 }
+  gender:
+    type: factor
+    levels_order: [ "Male", "Female", "Other" ]
+    reference_level: "Male"
+  education:
+    type: factor
+    levels_order: [
+      "Less than high school",
+      "High school graduate",
+      "Some college",
+      "Bachelor’s degree",
+      "Graduate degree"
+    ]
+  diabetes:
+    type: factor
+    missing_codes: [ "UNK", "Unknown", -9 ]
+  visit_dt:
+    type: date
+    format: "%Y-%m-%d"
+    required: true
+  hba1c:
+    type: double
+    units: "%"
+    allowed_range: { min: 3, max: 20 }
+    table: { digits: 1 }
+  consent:
+    type: factor
+    levels_order: [ "Yes", "No" ]
+  state:
+    type: character
+    regex: "^[A-Z]{2}$"   # simple demo: two-letter uppercase
+  patient_id:
+    sensitivity: phi
+  phone:
+    sensitivity: phi

@@ -1,15 +1,18 @@
 
-#' Attach labels from YAML metadata to a data frame.
+#' Apply a YAML codebook to a data frame (labels, values, basic metadata)
 #'
-#' @description
-#' Reads variable labels from a YAML file and applies them to the corresponding columns of a data frame.
-#' Data frame may contain variables not found in metadata, and vice versa.
+#' @param data A data.frame/tibble to annotate
+#' @param path Path to YAML (expects `labels`, optional `values`, optional `meta`).
+#' @param warn_missing Logical; warn when metadata vars aren’t in `data`.
+#' @param values How to handle value maps.
+#'    "none" (default), "overwrite", "new"
+#' @param values_tag Suffix used when values = "new".
 #'
-#' @param data A data frame you want to label.
-#' @param yaml_path Path to YAML file containing variable labels.
-#' @param warn_missing Logical; controls warnings for metadata variables not found in data frame.
-#' @param values Character (none, overwrite, new); controls how to handle factor values.
-#' @param values_tag Character, string for variable suffix when values = "new."
+#' @param strict How to handle data codes not found in YAML `values`:
+#'    "ignore" (default), "warn", or "error".
+#' @param normalize_codes Logical; trim whitespace and case-fold before matching.
+#' @param case One of "lower","upper","asis" for code matching if `normalize_codes=TRUE`.
+#' @param apply_meta Logical; apply simple meta rules if present:
 #'
 #' @return Original data frame with labels attached
 #' @export
@@ -18,7 +21,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' yaml_path <- system.file("extdata", "codebook.yaml", package = "bookworm")
+#' path <- system.file("extdata", "codebook.yaml", package = "bookworm")
 #'
 #' df <- data.frame(
 #'   age = c(23, 25, 42, 38, 29),
@@ -27,12 +30,12 @@
 #'   diabetes = c("Ngt", "Ngt", "2", "1", "Ngt")
 #' )
 #'
-#' labels <- df |> annotate(yaml_path, values = "overwrite")
+#' labels <- df |> annotate(path, values = "overwrite")
 #' }
 
 annotate <- function(
     data,
-    yaml_path,
+    path,
     warn_missing = FALSE,
     values = c("none", "overwrite", "new"),
     values_tag = "_factor"
@@ -45,15 +48,15 @@ annotate <- function(
   if (!inherits(data, "data.frame")) {
     stop("`data` must be a data.frame or tibble")
   }
-  if (!file.exists(yaml_path)) {
-    stop("Specified metadata file does not exist: ", yaml_path)
+  if (!file.exists(path)) {
+    stop("Specified metadata file does not exist: ", path)
   }
   if (!is.character(values_tag) || length(values_tag) != 1) {
     stop("`values_tag` must be a single string")
   }
 
   # load metadata
-  metadata <- yaml::read_yaml(yaml_path)
+  metadata <- yaml::read_yaml(path)
 
   if (!"labels" %in% names(metadata)) {
     stop("No labels found in metadata")
